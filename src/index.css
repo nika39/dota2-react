@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	.group:not(:hover) .group-not-hover\:first\:bg-neutral-800:first-child {
+		@apply bg-slate-50 dark:bg-neutral-800;
+	}
+
+	.row {
+		@apply -mx-3 flex flex-wrap;
+	}
+
+	.col {
+		@apply px-3;
+	}
+
+	.text-truncate {
+		@apply overflow-hidden text-ellipsis whitespace-nowrap;
+	}
+}
+
+@layer components {
+	.wrapper {
+		@apply rounded bg-slate-50 dark:bg-neutral-800 text-center xl:p-4 2xl:p-6;
+	}
+
+	.wrapper + .wrapper {
+		@apply mt-4;
+	}
+}

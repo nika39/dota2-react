@@ -1,15 +1,15 @@
 import { ISelectedHero } from "../models/hero";
 
 function getWeakIdsFromHeroes(heroes: ISelectedHero[]) {
-	let ids: number[] = [];
+    let ids: number[] = [];
 
-	heroes.forEach((hero) => {
-		hero.weak_opponents.forEach((opponentId) => {
-			if (!ids.includes(opponentId)) ids.push(opponentId);
-		});
-	});
+    heroes.forEach((hero) => {
+        hero.weak_opponents.forEach((opponentId) => {
+            if (!ids.includes(opponentId)) ids.push(opponentId);
+        });
+    });
 
-	return ids;
+    return ids;
 }
 
 export default getWeakIdsFromHeroes;

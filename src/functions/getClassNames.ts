@@ -1,17 +1,17 @@
 function getClassNames(classObj: object, classList?: string) {
-	let classes = [];
+    let classes = [];
 
-	if (classList) {
-		classes.push(...classList.split(" "));
-	}
+    if (classList) {
+        classes.push(...classList.split(" "));
+    }
 
-	classes.push(
-		...Object.entries(classObj)
-			.filter(([key, value]) => value)
-			.map(([key, value]) => key)
-	);
+    classes.push(
+        ...Object.entries(classObj)
+            .filter(([key, value]) => value)
+            .map(([key, value]) => key)
+    );
 
-	return classes.join(" ");
+    return classes.join(" ");
 }
 
 export default getClassNames;

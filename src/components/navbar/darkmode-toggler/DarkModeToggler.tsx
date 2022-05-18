@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef } from "react";
-import useNav from "../../../hooks/useNav";
+import useTooltip from "../../../hooks/useTooltip";
 
 function DarkModeToggler() {
-    const navPopper = useNav();
+    const tooltip = useTooltip("bottom", false);
 
     const lightModeElement = useRef<HTMLDivElement>(null);
     const darkModeElement = useRef<HTMLDivElement>(null);
@@ -55,7 +55,7 @@ function DarkModeToggler() {
 
     return (
         <div className="group relative z-[1045] flex items-center">
-            <div className="flex cursor-pointer items-center py-2 pl-1" ref={navPopper.setContainerElement}>
+            <div className="flex cursor-pointer items-center py-2 pl-1" ref={tooltip.setReferenceElement}>
                 <div className="dark:hidden">
                     <svg className="h-5 w-5" viewBox="0 0 512 512">
                         <path
@@ -75,9 +75,9 @@ function DarkModeToggler() {
             </div>
             <div
                 className="invisible flex w-48 flex-col rounded bg-slate-200 py-2 shadow-lg group-hover:visible dark:bg-zinc-900"
-                ref={navPopper.setPopperElement}
-                style={navPopper.popper.styles.popper}
-                {...navPopper.popper.attributes.popper}
+                ref={tooltip.setPopperElement}
+                style={tooltip.popper.styles.popper}
+                {...tooltip.popper.attributes.popper}
             >
                 <div
                     className="flex cursor-pointer items-center space-x-2 p-2 text-sm transition-colors hover:bg-slate-100 hover:dark:bg-neutral-800"
@@ -120,8 +120,8 @@ function DarkModeToggler() {
                 </div>
                 <div
                     className="invisible -top-[0.1875rem] h-1.5 w-1.5 bg-inherit before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit group-hover:before:visible"
-                    ref={navPopper.setArrowElement}
-                    style={navPopper.popper.styles.arrow}
+                    ref={tooltip.setArrowElement}
+                    style={tooltip.popper.styles.arrow}
                 />
             </div>
         </div>

@@ -1,21 +1,24 @@
+import { Placement } from "@popperjs/core";
 import { useEffect, useState } from "react";
 import { usePopper } from "react-popper";
 
-function useBadge() {
-    const [containerElement, setContainerElement] = useState<HTMLDivElement | null>(null);
+function useTooltip(placement: Placement, hoverEvent: boolean) {
+    const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
     const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
 
-    const popper = usePopper(containerElement, popperElement, {
+    const popper = usePopper(referenceElement, popperElement, {
         modifiers: [
             { name: "arrow", options: { element: arrowElement } },
             { name: "flip", enabled: false }
         ],
-        placement: "top"
+        placement
     });
 
     useEffect(() => {
-        const tooltipTriggerElement = containerElement as HTMLDivElement;
+        if (!hoverEvent) return;
+
+        const tooltipTriggerElement = referenceElement as HTMLDivElement;
 
         const handleBadgeMouseEnter = () => {
             popperElement!.style.display = "block";
@@ -34,9 +37,9 @@ function useBadge() {
             tooltipTriggerElement?.removeEventListener("mouseenter", handleBadgeMouseEnter);
             tooltipTriggerElement?.removeEventListener("mouseleave", handleBadgeMouseLeave);
         };
-    }, [popper, popperElement, containerElement]);
+    }, [popper, popperElement, referenceElement, hoverEvent]);
 
-    return { popper, setContainerElement, setPopperElement, setArrowElement };
+    return { popper, setReferenceElement, setPopperElement, setArrowElement };
 }
 
-export default useBadge;
+export default useTooltip;

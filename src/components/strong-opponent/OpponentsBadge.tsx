@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import getClassNames from "../../functions/getClassNames";
-import useBadge from "../../hooks/useBadge";
+import useTooltip from "../../hooks/useTooltip";
 import { ICounterHero } from "../../models/hero";
 import TooltipHero from "./TooltipHero";
 
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 function OpponentsBadge({ hero, isStrong }: IProps) {
-    const badge = useBadge();
+    const tooltip = useTooltip("top", true);
 
     return (
         <div
@@ -25,15 +25,15 @@ function OpponentsBadge({ hero, isStrong }: IProps) {
                 },
                 "align-center absolute top-[3px] z-20 flex h-[17px] w-[17px] cursor-pointer justify-center rounded-full text-center text-[11px] text-white"
             )}
-            ref={badge.setContainerElement}
+            ref={tooltip.setReferenceElement}
         >
             {isStrong ? hero.by.length : hero.strongs.length}
             {ReactDOM.createPortal(
                 <div
                     className="z-[1042] hidden rounded bg-slate-200 p-2 dark:bg-neutral-900"
-                    ref={badge.setPopperElement}
-                    style={badge.popper.styles.popper}
-                    {...badge.popper.attributes.popper}
+                    ref={tooltip.setPopperElement}
+                    style={tooltip.popper.styles.popper}
+                    {...tooltip.popper.attributes.popper}
                 >
                     <div className="flex -space-x-2">
                         {(isStrong ? hero.by : hero.strongs).map((hero) => (
@@ -42,8 +42,8 @@ function OpponentsBadge({ hero, isStrong }: IProps) {
                     </div>
                     <div
                         className="invisible bottom-0 h-1.5 w-1.5 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit"
-                        ref={badge.setArrowElement}
-                        style={badge.popper.styles.arrow}
+                        ref={tooltip.setArrowElement}
+                        style={tooltip.popper.styles.arrow}
                     />
                 </div>,
                 document.querySelector("#tooltip-root") as Element

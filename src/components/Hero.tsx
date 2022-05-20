@@ -39,8 +39,9 @@ function Hero({ hero }: IProps) {
                 onClick={handleClick}
                 className={getClassNames(
                     {
-                        "z-50 animate-bounce ring-purple-700 dark:bg-transparent dark:ring-amber-300":
-                            selectedHeroesIds.includes(hero.id),
+                        "z-50 ring-purple-700 dark:bg-transparent dark:ring-amber-300": selectedHeroesIds.includes(
+                            hero.id
+                        ),
                         "ring-transparent": !selectedHeroesIds.includes(hero.id),
                         "animate-denied": isExceeded
                     },

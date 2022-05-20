@@ -41,7 +41,7 @@ module.exports = {
             },
             animation: {
                 bounce: "bounce 1s infinite",
-                denied: "denied 1s linear 0s 2 alternate !important",
+                denied: "denied 0.5s linear 0s 4 alternate !important",
                 wiggle: "wiggle 1s ease-in-out infinite"
             }
         },

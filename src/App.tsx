@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import Navbar from "./components/navbar/Navbar";
 import Heroes from "./components/sections/Heroes";
 import HeroPositions from "./components/sections/HeroPositions";
+import RankList from "./components/sections/ranks/Ranks";
+import SelectedHeroes from "./components/sections/selected_heroes/SelectedHeroes";
 import { useAppDispatch } from "./redux/hooks/hooks";
 import { fetchAllHeroes } from "./redux/slices/heroesSlice";
 
@@ -17,6 +19,10 @@ function App() {
         <>
             <Navbar />
             <div className="container mt-6">
+                <div className="flex justify-between py-3">
+                    <SelectedHeroes />
+                    <RankList />
+                </div>
                 <div className="row">
                     <div className="col w-7/12">
                         <div className="wrapper flex flex-col space-y-6">

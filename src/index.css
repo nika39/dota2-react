@@ -18,11 +18,19 @@
     .text-truncate {
         @apply overflow-hidden text-ellipsis whitespace-nowrap;
     }
+
+    .peer ~ .peer-check-wrapper .peer-check {
+        @apply scale-0 transition-shadow delay-100;
+    }
+
+    .peer:checked ~ .peer-check-wrapper .peer-check {
+        @apply scale-100;
+    }
 }
 
 @layer components {
     .wrapper {
-        @apply rounded bg-slate-50 text-center dark:bg-neutral-800 xl:p-4 2xl:p-6;
+        @apply rounded bg-slate-50 dark:bg-neutral-800 xl:p-4 2xl:p-6;
     }
 
     .wrapper + .wrapper {

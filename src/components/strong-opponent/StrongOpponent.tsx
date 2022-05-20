@@ -2,15 +2,14 @@ import getClassNames from "../../functions/getClassNames";
 import { ICounterHero } from "../../models/hero";
 import OpponentsBadge from "./OpponentsBadge";
 
-interface IProps {
-    hero: ICounterHero;
-}
-
-function StrongOpponent({ hero }: IProps) {
+function StrongOpponent({ hero }: { hero: ICounterHero }) {
     return (
         <div className="relative rounded before:absolute before:inset-0 before:z-10 before:bg-black/10">
             <img
-                className={getClassNames({ "opacity-30": hero.strongs.length >= 1 }, "img-fluid rounded-1")}
+                className={getClassNames(
+                    { "opacity-30": "strongs" in hero && hero.strongs.length >= 1 },
+                    "h-auto max-w-full rounded object-cover"
+                )}
                 src={`${process.env.REACT_APP_URL}/${hero.image.path}`}
                 alt={hero.name}
             />

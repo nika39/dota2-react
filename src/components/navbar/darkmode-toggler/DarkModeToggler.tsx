@@ -2,21 +2,21 @@ import { useCallback, useEffect, useRef } from "react";
 import useTooltip from "../../../hooks/useTooltip";
 
 function DarkModeToggler() {
-    const tooltip = useTooltip("bottom", false);
+    const tooltip = useTooltip("bottom-end", false);
 
     const lightModeElement = useRef<HTMLDivElement>(null);
     const darkModeElement = useRef<HTMLDivElement>(null);
     const systemModeElement = useRef<HTMLDivElement>(null);
 
     const removeActiveClassName = () => {
-        lightModeElement?.current?.classList.remove("text-amber-400");
-        darkModeElement?.current?.classList.remove("text-amber-400");
-        systemModeElement?.current?.classList.remove("text-amber-400");
+        lightModeElement?.current?.classList.remove("text-purple-400", "dark:text-amber-400");
+        darkModeElement?.current?.classList.remove("text-purple-400", "dark:text-amber-400");
+        systemModeElement?.current?.classList.remove("text-purple-400", "dark:text-amber-400");
     };
 
     const setLightMode = useCallback(() => {
         removeActiveClassName();
-        lightModeElement?.current?.classList.add("text-amber-400");
+        lightModeElement?.current?.classList.add("text-purple-400", "dark:text-amber-400");
 
         localStorage.setItem("theme", "light");
         document.documentElement.classList.remove("dark");
@@ -24,7 +24,7 @@ function DarkModeToggler() {
 
     const setDarkMode = useCallback(() => {
         removeActiveClassName();
-        darkModeElement?.current?.classList.add("text-amber-400");
+        darkModeElement?.current?.classList.add("text-purple-400", "dark:text-amber-400");
 
         localStorage.setItem("theme", "dark");
         document.documentElement.classList.add("dark");
@@ -32,7 +32,7 @@ function DarkModeToggler() {
 
     const setSystemMode = useCallback(() => {
         removeActiveClassName();
-        systemModeElement?.current?.classList.add("text-amber-400");
+        systemModeElement?.current?.classList.add("text-purple-400", "dark:text-amber-400");
 
         localStorage.removeItem("theme");
 

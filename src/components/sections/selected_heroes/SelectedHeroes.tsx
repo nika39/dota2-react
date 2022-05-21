@@ -7,7 +7,7 @@ function SelectedHeroes() {
     return (
         <div className="flex h-16 grow items-center space-x-3">
             {!selectedHeroes.length && (
-                <h4 className="select-none text-lg italic text-slate-300">Selected Heroes...</h4>
+                <h4 className="select-none text-lg italic text-slate-300 dark:text-neutral-800">Selected Heroes...</h4>
             )}
             {selectedHeroes.map((hero) => {
                 return (

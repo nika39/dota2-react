@@ -1,4 +1,17 @@
-function Rank({ rank }: { rank: string }) {
+import { RankType } from "../../../models/Rank";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
+import { fetchAllHeroes } from "../../../redux/slices/heroesSlice";
+import { selectRank } from "../../../redux/slices/ranksSlice";
+
+function Rank({ rank }: { rank: RankType }) {
+    const selectedRank = useAppSelector(({ ranks }) => ranks.selectedRank);
+    const dispatch = useAppDispatch();
+
+    const handleSelect = () => {
+        dispatch(selectRank(rank));
+        dispatch(fetchAllHeroes(rank.toLowerCase()));
+    };
+
     return (
         <div className="flex items-center space-x-1.5">
             <input
@@ -6,11 +19,12 @@ function Rank({ rank }: { rank: string }) {
                 className="peer hidden"
                 name="rank"
                 id={`rank-${rank}`}
-                defaultChecked={rank === "Archon"}
+                onChange={handleSelect}
+                defaultChecked={rank === selectedRank}
             />
             <label
                 htmlFor={`rank-${rank}`}
-                className="peer-check-wrapper relative h-2 w-2 cursor-pointer rounded-full bg-purple-600 ring-purple-600 ring-offset-1 ring-offset-slate-200 peer-checked:ring-1 dark:bg-amber-400 dark:ring-offset-neutral-900 dark:peer-checked:ring-amber-400"
+                className="peer-check-wrapper relative h-2 w-2 cursor-pointer rounded-full bg-purple-600 ring-1 ring-purple-600 ring-offset-1 ring-offset-slate-200 dark:bg-amber-400 dark:ring-amber-400 dark:ring-offset-neutral-900"
             >
                 <svg
                     className="peer-check absolute top-1/2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 transform"

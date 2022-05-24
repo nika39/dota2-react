@@ -10,11 +10,10 @@ interface IProps {
 }
 
 function Category({ title, category, marginTop }: IProps) {
-    const allHeroes = useAppSelector((state) => state.heroes.allHeroes);
+    const allHeroes = useAppSelector(state => state.heroes.allHeroes);
 
     const heroes = useMemo(
-        () =>
-            allHeroes.filter((hero) => hero.category.id === category).map((hero) => <Hero key={hero.id} hero={hero} />),
+        () => allHeroes.filter(hero => hero.category.id === category).map(hero => <Hero key={hero.id} hero={hero} />),
         [allHeroes, category]
     );
 

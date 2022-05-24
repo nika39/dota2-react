@@ -9,7 +9,7 @@ interface IProp {
 }
 
 function Position({ title, position }: IProp) {
-    const counterHeroes = useAppSelector((state) => state.heroes.counterHeroes);
+    const counterHeroes = useAppSelector(state => state.heroes.counterHeroes);
     const heroes = getHeroesFilteredByPosition(position, counterHeroes);
 
     return (

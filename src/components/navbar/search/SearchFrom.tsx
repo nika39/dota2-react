@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
 import { IHero } from "../../../models/hero";
 
 function SearchFrom() {
-    const allHeroes = useAppSelector((state) => state.heroes.allHeroes);
+    const allHeroes = useAppSelector(state => state.heroes.allHeroes);
     const dispatch = useAppDispatch();
     const [searchText, setSeachText] = useState<string>("");
     const [searchResult, setSearchResult] = useState<IHero[]>([]);
@@ -52,7 +52,7 @@ function SearchFrom() {
             return (
                 <SearchResultContainer>
                     {searchResult.length ? (
-                        searchResult.map((hero) => <SearchResult key={hero.id} hero={hero} onSelect={selectHandler} />)
+                        searchResult.map(hero => <SearchResult key={hero.id} hero={hero} onSelect={selectHandler} />)
                     ) : (
                         <div className="fs-7 p-2">Not Found!</div>
                     )}

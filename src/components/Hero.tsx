@@ -13,7 +13,7 @@ function Hero({ hero }: IProps) {
     const heroElement = useRef<HTMLDivElement>(null);
     const [isExceeded, setIsExceeded] = useState(false);
 
-    const selectedHeroesIds = useAppSelector((state) => state.heroes.selectedHeroesIds);
+    const selectedHeroesIds = useAppSelector(state => state.heroes.selectedHeroesIds);
     const dispatch = useAppDispatch();
 
     const handleClick = () => {

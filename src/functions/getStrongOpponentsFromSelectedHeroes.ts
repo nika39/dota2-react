@@ -13,12 +13,12 @@ function getStrongOpponentsFromSelectedHeroes(
         opponents: []
     };
 
-    selectedHeroes.forEach((selectedHero) => {
-        selectedHero.strong_opponents.heroes.forEach((strongOpponent) => {
+    selectedHeroes.forEach(selectedHero => {
+        selectedHero.strong_opponents.heroes.forEach(strongOpponent => {
             if (selectedHeroesIds.includes(strongOpponent.id)) return;
 
             if (strongOpponents.ids.includes(strongOpponent.id)) {
-                strongOpponents.opponents = strongOpponents.opponents.map((counterHero) => {
+                strongOpponents.opponents = strongOpponents.opponents.map(counterHero => {
                     if (counterHero.id === strongOpponent.id) {
                         strongOpponents.ids.push(strongOpponent.id);
                         counterHero.by.push(selectedHero);
@@ -37,7 +37,7 @@ function getStrongOpponentsFromSelectedHeroes(
         });
     });
 
-    strongOpponents.opponents.map((opponent) => {
+    strongOpponents.opponents.map(opponent => {
         opponent.strongs = getStrongOpponentsOfStrongOpponent(opponent.id, selectedHeroes);
         return opponent;
     });

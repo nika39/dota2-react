@@ -24,7 +24,8 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "serve": "serve -s build"
+        "serve": "serve -s build",
+        "prettier": "prettier --write src"
     },
     "eslintConfig": {
         "extends": [

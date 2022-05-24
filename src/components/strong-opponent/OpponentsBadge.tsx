@@ -36,7 +36,7 @@ function OpponentsBadge({ hero, isStrong }: IProps) {
                     {...tooltip.popper.attributes.popper}
                 >
                     <div className="flex -space-x-2">
-                        {(isStrong ? hero.by : hero.strongs).map((hero) => (
+                        {(isStrong ? hero.by : hero.strongs).map(hero => (
                             <TooltipHero key={hero.id} hero={hero} />
                         ))}
                     </div>

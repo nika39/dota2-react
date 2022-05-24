@@ -1,24 +1,24 @@
 import axios from "axios";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { RootState, AppThunk } from "../store";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import addOpponentsToHero from "../../functions/addOpponentsToHero";
 import { ICounterHero, IHero, ISelectedHero } from "../../models/hero";
 import getStrongOpponentsFromSelectedHeroes from "../../functions/getStrongOpponentsFromSelectedHeroes";
+import getHeroById from "../../functions/getHeroById";
 import { RootState } from "../store";
 
 export const fetchAllHeroes = createAsyncThunk("heroes/fetchAllHeroes", async (rank: string) => {
-    const response = await axios(`/heroes?rank=${rank}`);
+    const response = await axios(`/api/heroes?rank=${rank}`);
     return response.data;
 });
 
-interface IState {
+interface IHeroesState {
     allHeroes: IHero[];
     selectedHeroes: ISelectedHero[];
     selectedHeroesIds: number[];
     counterHeroes: ICounterHero[];
 }
 
-const initialState: IState = {
+const initialState: IHeroesState = {
     allHeroes: [],
     selectedHeroes: [],
     selectedHeroesIds: [],
@@ -37,8 +37,8 @@ export const heroesSlice = createSlice({
             let selectedHeroesIds;
             let selectedHeroes;
             if (isSelected) {
-                selectedHeroesIds = state.selectedHeroesIds.filter((id) => id !== selectedHero.id);
-                selectedHeroes = state.selectedHeroes.filter((hero) => hero.id !== selectedHero.id);
+                selectedHeroesIds = state.selectedHeroesIds.filter(id => id !== selectedHero.id);
+                selectedHeroes = state.selectedHeroes.filter(hero => hero.id !== selectedHero.id);
             } else {
                 selectedHeroesIds = [...state.selectedHeroesIds, selectedHero.id];
                 selectedHeroes = [...state.selectedHeroes, selectedHero];
@@ -54,11 +54,33 @@ export const heroesSlice = createSlice({
             };
         }
     },
-    extraReducers: (builder) => {
+    extraReducers: builder => {
         builder.addCase(fetchAllHeroes.fulfilled, (state, action) => {
+            const heroes: IHero[] = action.payload;
+
+            const selectedHeroes = state.selectedHeroes.map(selectedHero => {
+                const hero = getHeroById(selectedHero.id, heroes);
+
+                return {
+                    ...selectedHero,
+                    positions: [...hero.positions]
+                };
+            });
+
+            const counterHeroes = state.counterHeroes.map(counterHero => {
+                const hero = getHeroById(counterHero.id, heroes);
+
+                return {
+                    ...counterHero,
+                    positions: [...hero.positions]
+                };
+            });
+
             return {
                 ...state,
-                allHeroes: action.payload
+                allHeroes: action.payload,
+                selectedHeroes,
+                counterHeroes
             };
         });
     }

@@ -1,5 +1,5 @@
 import DarkModeToggler from "./darkmode-toggler/DarkModeToggler";
-import SearchFrom from "./search/SearchFrom";
+import SearchFrom from "./search/SearchForm";
 
 function Navbar() {
     return (

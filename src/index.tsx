@@ -1,8 +1,8 @@
 // import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import axios from "axios";
 import { store } from "./redux/store";
+import axios from "axios";
 import App from "./App";
 
 import "./index.css";

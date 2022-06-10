@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import addOpponentsToHero from "../../functions/addOpponentsToHero";
 import { ICounterHero, IHero, ISelectedHero } from "../../models/hero";
 import getStrongOpponentsFromSelectedHeroes from "../../functions/getStrongOpponentsFromSelectedHeroes";
@@ -55,8 +55,8 @@ export const heroesSlice = createSlice({
         }
     },
     extraReducers: builder => {
-        builder.addCase(fetchAllHeroes.fulfilled, (state, action) => {
-            const heroes: IHero[] = action.payload;
+        builder.addCase(fetchAllHeroes.fulfilled, (state, action: PayloadAction<IHero[]>) => {
+            const heroes = action.payload;
 
             const selectedHeroes = state.selectedHeroes.map(selectedHero => {
                 const hero = getHeroById(selectedHero.id, heroes);

@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { shallowEqual } from "react-redux";
 
 import getClassNames from "../functions/getClassNames";
 import { IHero } from "../models/hero";
@@ -13,12 +14,16 @@ function Hero({ hero }: IProps) {
     const heroElement = useRef<HTMLDivElement>(null);
     const [isExceeded, setIsExceeded] = useState(false);
 
-    const selectedHeroesIds = useAppSelector(state => state.heroes.selectedHeroesIds);
+    const { isSelected, isLimit } = useAppSelector(state => {
+        const isLimit =
+            !state.heroes.selectedHeroesIds.includes(hero.id) && state.heroes.selectedHeroesIds.length === 5;
+        const isSelected = state.heroes.selectedHeroesIds.includes(hero.id);
+
+        return { isSelected, isLimit };
+    }, shallowEqual);
     const dispatch = useAppDispatch();
 
     const handleClick = () => {
-        const isLimit = !selectedHeroesIds.includes(hero.id) && selectedHeroesIds.length === 5;
-
         if (isLimit) {
             setIsExceeded(true);
 
@@ -39,10 +44,8 @@ function Hero({ hero }: IProps) {
                 onClick={handleClick}
                 className={getClassNames(
                     {
-                        "z-50 ring-purple-700 dark:bg-transparent dark:ring-amber-300": selectedHeroesIds.includes(
-                            hero.id
-                        ),
-                        "ring-transparent": !selectedHeroesIds.includes(hero.id),
+                        "z-50 ring-purple-700 dark:bg-transparent dark:ring-amber-300": isSelected,
+                        "ring-transparent": !isSelected,
                         "animate-denied": isExceeded
                     },
                     "relative cursor-pointer select-none rounded p-0.5 ring-[3px] transition dark:p-0"

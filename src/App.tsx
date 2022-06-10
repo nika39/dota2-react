@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import Navbar from "./components/navbar/Navbar";
-import Heroes from "./components/sections/Heroes";
+import Heroes from "./components/sections/categories/Categories";
 import HeroPositions from "./components/sections/HeroPositions";
 import RankList from "./components/sections/ranks/Ranks";
 import SelectedHeroes from "./components/sections/selected_heroes/SelectedHeroes";

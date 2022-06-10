@@ -1,5 +1,4 @@
-import React from "react";
-import { IHero } from "../../../../models/hero";
+import { IHero } from "../../../models/hero";
 
 interface IProps {
     hero: IHero;
@@ -13,7 +12,20 @@ function SearchResult({ hero, onSelect }: IProps) {
 
     return (
         <div
-            className="align-center group-not-hover:first:bg-neutral-800 flex cursor-pointer px-3 py-4 transition-colors hover:bg-slate-50 dark:hover:bg-neutral-800"
+            className="
+                align-center
+                flex cursor-pointer
+                bg-slate-200
+                px-3 
+                py-4 
+                transition-colors
+                first:bg-slate-50 
+                hover:!bg-slate-50 
+                group-hover:bg-slate-200 
+                dark:bg-neutral-900 
+                dark:first:bg-neutral-800
+                dark:hover:!bg-neutral-800
+                dark:group-hover:bg-neutral-900"
             onClick={selectHandler}
         >
             <img

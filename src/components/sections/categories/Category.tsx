@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useAppSelector } from "../../../redux/hooks/hooks";
 
 import Hero from "../../Hero";
@@ -6,10 +6,9 @@ import Hero from "../../Hero";
 interface IProps {
     title: string;
     category: number;
-    marginTop: boolean;
 }
 
-function Category({ title, category, marginTop }: IProps) {
+function Category({ title, category }: IProps) {
     const allHeroes = useAppSelector(state => state.heroes.allHeroes);
 
     const heroes = useMemo(

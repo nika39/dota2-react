@@ -13,7 +13,7 @@ function Rank({ rank }: { rank: RankType }) {
     };
 
     return (
-        <div className="flex items-center space-x-1.5">
+        <div className="flex items-center">
             <input
                 type="radio"
                 className="peer hidden"
@@ -23,11 +23,11 @@ function Rank({ rank }: { rank: RankType }) {
                 defaultChecked={rank === selectedRank}
             />
             <label
+                className="relative h-2 w-2 cursor-pointer rounded-full bg-purple-600 ring-1 ring-purple-600 ring-offset-1 ring-offset-slate-200 dark:bg-amber-400 dark:ring-amber-400 dark:ring-offset-neutral-900 peer-checked:[&>*]:scale-100"
                 htmlFor={`rank-${rank}`}
-                className="peer-check-wrapper relative h-2 w-2 cursor-pointer rounded-full bg-purple-600 ring-1 ring-purple-600 ring-offset-1 ring-offset-slate-200 dark:bg-amber-400 dark:ring-amber-400 dark:ring-offset-neutral-900"
             >
                 <svg
-                    className="peer-check absolute top-1/2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 transform"
+                    className="absolute top-1/2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 scale-0 transform transition-transform"
                     viewBox="0 0 448 512"
                 >
                     <path
@@ -37,7 +37,7 @@ function Rank({ rank }: { rank: RankType }) {
                 </svg>
             </label>
             <label
-                className="cursor-pointer text-sm peer-checked:text-purple-600 dark:peer-checked:text-amber-400"
+                className="cursor-pointer pl-1.5 text-sm capitalize peer-checked:text-purple-600 dark:peer-checked:text-amber-400"
                 htmlFor={`rank-${rank}`}
             >
                 {rank}

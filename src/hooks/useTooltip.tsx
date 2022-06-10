@@ -9,6 +9,12 @@ function useTooltip(placement: Placement, hoverEvent: boolean) {
 
     const popper = usePopper(referenceElement, popperElement, {
         modifiers: [
+            {
+                name: "eventListeners",
+                options: {
+                    scroll: false
+                }
+            },
             { name: "arrow", options: { element: arrowElement } },
             { name: "flip", enabled: false }
         ],
@@ -17,8 +23,7 @@ function useTooltip(placement: Placement, hoverEvent: boolean) {
 
     useEffect(() => {
         if (!hoverEvent) return;
-
-        const tooltipTriggerElement = referenceElement as HTMLDivElement;
+        const tooltipTriggerElement = referenceElement;
 
         const handleBadgeMouseEnter = () => {
             popperElement!.style.display = "block";

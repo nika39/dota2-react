@@ -51,7 +51,7 @@ function SearchFrom() {
                 value={searchText}
             />
             <button
-                type="button"
+                type="submit"
                 className="absolute top-[13px] right-[13px] appearance-none border-none bg-transparent"
             >
                 <svg className="h-4 w-4 fill-gray-500 dark:fill-neutral-300" viewBox="0 0 512 512">
@@ -63,7 +63,7 @@ function SearchFrom() {
                     {searchResult.length ? (
                         searchResult.map(hero => <SearchResult key={hero.id} hero={hero} onSelect={selectHandler} />)
                     ) : (
-                        <div className="fs-7 p-2">Not Found!</div>
+                        <div className="fs-7 bg-slate-50 p-2 dark:bg-neutral-800">Not Found!</div>
                     )}
                 </SearchResults>
             )}

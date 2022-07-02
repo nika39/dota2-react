@@ -54,7 +54,7 @@ function Hero({ hero }: IProps) {
                 <div className="relative rounded">
                     <img
                         className="h-auto max-w-full rounded"
-                        src={`${process.env.REACT_APP_URL}/${hero.image.path}`}
+                        src={`${process.env.REACT_APP_URL}${hero.image.path}`}
                         alt={hero.name}
                         loading="lazy"
                     />

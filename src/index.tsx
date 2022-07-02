@@ -7,8 +7,8 @@ import App from "./App";
 
 import "./index.css";
 
-axios.defaults.baseURL = `${process.env.REACT_APP_URL}/`;
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.REACT_APP_URL;
+// axios.defaults.withCredentials = true;
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);

@@ -15,7 +15,7 @@ function SelectedHero({ hero }: { hero: ISelectedHero }) {
                 width={110}
                 height={60}
                 className="h-auto w-full rounded object-cover shadow-md"
-                src={`${process.env.REACT_APP_URL}/${hero.image.path}`}
+                src={`${process.env.REACT_APP_URL}${hero.image.path}`}
                 alt={hero.name}
             />
             <h6 className="text-truncate absolute left-0 bottom-0 z-20 w-full bg-gradient-to-b from-black/0 via-black/20 to-black/60 py-[2px] px-1 text-[10px] text-neutral-200">

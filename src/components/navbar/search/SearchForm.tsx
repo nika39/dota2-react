@@ -45,7 +45,7 @@ function SearchFrom() {
             <input
                 className="w-80 appearance-none rounded border-none bg-slate-200 p-2.5 pr-10 text-sm text-gray-600 outline-none placeholder:text-neutral-500 placeholder:transition-colors focus:text-gray-600 focus:placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white dark:focus:placeholder:text-white"
                 type="text"
-                placeholder="Search..."
+                placeholder="Type for e.g. mars..."
                 ref={searchInput}
                 onChange={onInputChange}
                 value={searchText}
